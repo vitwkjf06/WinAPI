@@ -14,13 +14,13 @@ INT WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		"MessageBox",
 		MB_YESNOCANCEL
 		| MB_ICONERROR
-		| MB_HELP 
+		| MB_HELP
 		| MB_DEFBUTTON3
 		| MB_SYSTEMMODAL
 
 	);*/
 
-	DialogBoxParam(hinstance, MAKEINTRESOURCE(IDD_DIALOG1), NULL, (DLGPROC) DlgProc, 0);
+	DialogBoxParam(hinstance, MAKEINTRESOURCE(IDD_DIALOG1), NULL, (DLGPROC)DlgProc, 0);
 
 	return 0;
 }
@@ -32,7 +32,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 		SendMessage(hwnd, WM_SETICON, 0, (LPARAM)hIcon);
-		SetFocus(GetDlgItem(hwnd, IDC_EDIT_LOGIN));
+		//SetFocus(GetDlgItem(hwnd, IDC_EDIT_LOGIN));
 		HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);
 		SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)LOGIN_INVITE);
 	}
@@ -42,19 +42,19 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 		case IDC_EDIT_LOGIN:
 		{
-			HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);	
+			HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);
 			CONST INT SIZE = 256;
 			CHAR sz_buffer[SIZE] = {};
 			SendMessage(hEditLogin, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
 			if (HIWORD(wParam) == EN_SETFOCUS)
 			{
 				if (strcmp(sz_buffer, LOGIN_INVITE) == 0)
-				SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)"");
+					SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)"");
 			}
 			if (HIWORD(wParam) == EN_KILLFOCUS)
 			{
 				if (strcmp(sz_buffer, "") == 0)
-				SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)LOGIN_INVITE);
+					SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)LOGIN_INVITE);
 			}
 		}
 		break;
