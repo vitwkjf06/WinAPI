@@ -20,7 +20,7 @@ INT WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 
 	);*/
 
-	DialogBoxParam(hinstance, MAKEINTRESOURCE(IDD_DIALOG1), NULL, (DLGPROC)DlgProc, 0);
+	DialogBoxParam(hinstance, MAKEINTRESOURCE(IDD_DIALOG_MAIN), NULL, (DLGPROC)DlgProc, 0);
 
 	return 0;
 }
